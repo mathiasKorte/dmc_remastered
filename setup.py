@@ -1,4 +1,5 @@
 import setuptools
+import os
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -14,6 +15,7 @@ setuptools.setup(
     url="https://github.com/jakegrigsby/dmc_remastered",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    data_files=[('assets', ['assets/' + f for f in os.listdir('assets')])],
     python_requires='>=3.6',
     install_requires=[
         "gym",
