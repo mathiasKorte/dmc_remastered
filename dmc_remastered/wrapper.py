@@ -106,6 +106,9 @@ class DMC_Remastered_Env(core.Env):
         self._norm_action_space = spaces.Box(
             low=-1.0, high=1.0, shape=self._true_action_space.shape, dtype=np.float32
         )
+        self._norm_action_space64 = spaces.Box(
+            low=-1.0, high=1.0, shape=self._true_action_space.shape, dtype=np.float64
+        )
         # create observation space
         shape = [3, height, width] if channels_first else [height, width, 3]
         self._observation_space = spaces.Box(
@@ -164,7 +167,7 @@ class DMC_Remastered_Env(core.Env):
         self._observation_space.seed(seed)
 
     def step(self, action):
-        assert self._norm_action_space.contains(action)
+        assert self._norm_action_space.contains(action) or self._norm_action_space64.contains(action)
         action = self._convert_action(action)
         assert self._true_action_space.contains(action)
         reward = 0
