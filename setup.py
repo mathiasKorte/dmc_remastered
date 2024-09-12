@@ -15,7 +15,7 @@ setuptools.setup(
     url="https://github.com/jakegrigsby/dmc_remastered",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    data_files=[('assets', ['assets/' + f for f in os.listdir('assets')])],
+    data_files=[('assets', ['dmc_remastered/assets/' + f for f in os.listdir('dmc_remastered/assets')])],
     python_requires='>=3.6',
     install_requires=[
         "gym",
